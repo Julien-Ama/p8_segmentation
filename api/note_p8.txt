@@ -1,0 +1,18 @@
+uvicorn main:app --reload
+
+http://127.0.0.1:8000
+http://127.0.0.1:8000/health
+
+documentation: http://127.0.0.1:8000/docs
+
+Streamlit:
+
+uvicorn main:app --reload + http://127.0.0.1:8000
+
+streamlit run streamlit_app/app.py ou streamlit run app.py
+
+streamlit localhost final:
+
+api>		uvicorn main:app --reload
+
+streamlit_app>  streamlit run app.py
