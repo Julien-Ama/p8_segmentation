@@ -46,16 +46,35 @@ def preprocess_image(image: Image.Image) -> np.ndarray:
     )
 
 
+# def predict_mask(
+#     model: tf.keras.Model,
+#     image: Image.Image
+# ) -> np.ndarray:
+#     input_batch = preprocess_image(image)
+#
+#     prediction = model.predict(
+#         input_batch,
+#         verbose=0
+#     )
+#
+#     mask = np.argmax(
+#         prediction[0],
+#         axis=-1
+#     )
+#
+#     return mask.astype(np.uint8)
 def predict_mask(
     model: tf.keras.Model,
     image: Image.Image
 ) -> np.ndarray:
     input_batch = preprocess_image(image)
 
-    prediction = model.predict(
+    prediction = model(
         input_batch,
-        verbose=0
+        training=False
     )
+
+    prediction = prediction.numpy()
 
     mask = np.argmax(
         prediction[0],
