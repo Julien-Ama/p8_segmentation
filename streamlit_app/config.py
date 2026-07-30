@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent
 IMAGES_DIR = BASE_DIR / "demo_data" / "images"
 MASKS_DIR = BASE_DIR / "demo_data" / "masks"
 
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = "https://p8-segmentation-api.onrender.com"
 
 MODEL_NAME = "U-Net + VGG16"
 MODEL_INPUT_SIZE = "256 × 256"

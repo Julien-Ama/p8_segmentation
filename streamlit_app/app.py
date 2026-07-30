@@ -117,21 +117,21 @@ try:
         st.subheader("Image originale")
         st.image(
             original_display,
-            width="stretch",
+            use_column_width=True,
         )
 
     with column_truth:
         st.subheader("Masque réel")
         st.image(
             ground_truth_display,
-            width="stretch",
+            use_column_width=True,
         )
 
     with column_prediction:
         st.subheader("Masque prédit")
         st.image(
             predicted_display,
-            width="stretch",
+            use_column_width=True,
         )
 
     st.divider()

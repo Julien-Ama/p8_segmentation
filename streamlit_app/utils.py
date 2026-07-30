@@ -175,7 +175,7 @@ def request_prediction(
 
     with image_path.open("rb") as image_file:
         response = requests.post(
-            API_URL,
+            f"{API_URL}/predict",
             files={
                 "file": (
                     image_path.name,
@@ -185,6 +185,17 @@ def request_prediction(
             },
             timeout=120,
         )
+        # response = requests.post(
+        #     API_URL,
+        #     files={
+        #         "file": (
+        #             image_path.name,
+        #             image_file,
+        #             "image/png",
+        #         )
+        #     },
+        #     timeout=120,
+        # )
 
     elapsed_time = perf_counter() - start_time
 
