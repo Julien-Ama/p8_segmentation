@@ -67,18 +67,46 @@ def predict_mask(
     model: tf.keras.Model,
     image: Image.Image
 ) -> np.ndarray:
+    print("ÉTAPE 1 - début du prétraitement", flush=True)
+
     input_batch = preprocess_image(image)
+
+    print(
+        "ÉTAPE 2 - entrée préparée :",
+        input_batch.shape,
+        input_batch.dtype,
+        flush=True
+    )
+
+    print(
+        "ÉTAPE 3 - entrée attendue par le modèle :",
+        model.input_shape,
+        flush=True
+    )
 
     prediction = model(
         input_batch,
         training=False
     )
 
-    prediction = prediction.numpy()
+    print(
+        "ÉTAPE 4 - prédiction obtenue :",
+        prediction.shape,
+        prediction.dtype,
+        flush=True
+    )
+
+    prediction = np.asarray(prediction)
 
     mask = np.argmax(
         prediction[0],
         axis=-1
+    )
+
+    print(
+        "ÉTAPE 5 - masque obtenu :",
+        mask.shape,
+        flush=True
     )
 
     return mask.astype(np.uint8)

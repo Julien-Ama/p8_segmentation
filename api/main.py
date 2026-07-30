@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 from PIL import Image, UnidentifiedImageError
 
 from inference import load_segmentation_model, predict_mask
-
+import traceback
 
 app = FastAPI(
     title="Cityscapes Segmentation API",
@@ -71,16 +71,16 @@ async def predict(file: UploadFile = File(...)):
             model=model,
             image=image
         )
-    except Exception as error:
+        except Exception as error:
+        traceback.print_exc()
+
         raise HTTPException(
             status_code=500,
-            detail=f"Erreur pendant la prédiction : {error}"
+            detail=(
+                f"Erreur pendant la prédiction : "
+                f"{type(error).__name__}: {error}"
+            )
         )
-
-    mask_image = Image.fromarray(
-        mask,
-        mode="L"
-    )
 
     output_buffer = BytesIO()
 
