@@ -4,3 +4,4 @@ uvicorn==0.44.0
 numpy==2.4.4
 pillow==10.2.0
 python-multipart==0.0.32
+streamlit==1.37.1
